@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mi-app-html  # Puedes cambiarlo a "miproyectoazure" si prefieres
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mi-app-html  # Debe coincidir con el label del template
+  template:
+    metadata:
+      labels:
+        app: mi-app-html  # Debe coincidir con el selector
+    spec:
+      containers:
+      - name: nginx
+        image: guillemetal/miproyectoazure:latest  # <<< ¡Cambiado aquí!
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mi-app-html-service  # Puedes renombrarlo (ej: "miproyectoazure-service")
+spec:
+  type: LoadBalancer  # Azure asignará una IP pública
+  selector:
+    app: mi-app-html  # Debe coincidir con el label del Deployment
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
