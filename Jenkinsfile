@@ -6,7 +6,7 @@ pipeline {
             steps {
                 script {
                     withCredentials([usernamePassword(
-                        credentialsId: 'docker-hub-creds',  // ID de las credenciales en Jenkins
+                        credentialsId: 'credentialsId',  // ID de las credenciales en Jenkins
                         usernameVariable: 'DOCKER_USER',
                         passwordVariable: 'DOCKER_PWD'
                     )]) {
