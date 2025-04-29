@@ -29,7 +29,9 @@ spec:
       hostPath:
         path: /var/run/docker.sock
             """
+        }
     }
+
     stages {
         // --- Construye y sube la imagen a Docker Hub ---
         stage('Build & Push Docker Image') {
@@ -57,8 +59,6 @@ spec:
         stage('Deploy to AKS') {
             steps {
                 script {
-                    // Aplicar el archivo de despliegue (deployment.yaml)
-                    // Asegúrate de tener el archivo deployment.yaml en el repositorio
                     sh 'kubectl apply -f deployment.yaml'
                 }
             }
@@ -68,9 +68,8 @@ spec:
         stage('Get Public IP') {
             steps {
                 script {
-                    // Espera un poco para que la IP pública sea asignada
                     sh '''
-                        sleep 15  // Espera para que se asigne la IP pública
+                        sleep 15
                         echo "✅ Aplicación desplegada. IP pública:"
                         kubectl get svc mi-app-html-service -o jsonpath='{.status.loadBalancer.ingress[0].ip}'
                     '''
