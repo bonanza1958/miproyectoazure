@@ -13,4 +13,4 @@ RUN curl -sLO "https://dl.k8s.io/release/$(curl -sL https://dl.k8s.io/release/st
     install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl && \
     rm kubectl
 
-USER jenkins
+
