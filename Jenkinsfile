@@ -14,7 +14,7 @@ spec:
     runAsUser: 0  # Ejecutar como root para acceder al Docker socket
   containers:
   - name: jnlp
-    image: guillemetal/jenkins-agent-docker:latest  # Imagen personalizada que incluye Docker
+    image: image: docker:dind # Imagen personalizada que incluye Docker
     volumeMounts:
       - name: docker-socket
         mountPath: /var/run/docker.sock
