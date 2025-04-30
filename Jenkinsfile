@@ -14,8 +14,8 @@ spec:
     runAsUser: 0  # Ejecutar como root para acceder al Docker socket
   containers:
   - name: jnlp
-    image: image:  docker:24.0.5-cli # Imagen personalizada que incluye Docker
-    volumeMounts:
+    image: docker:24.0.5-cli # Imagen personalizada que incluye Docker
+       volumeMounts:
       - name: docker-socket
         mountPath: /var/run/docker.sock
   volumes:
